@@ -1,18 +1,18 @@
-module.exports = function (app) {
-    app.get('/produtos',function (request,response) {
+module.exports = function(app) {
+    app.get("/produtos",function(req, res) {
         var mysql = require('mysql');
         var connection = mysql.createConnection({
-            host : 'localhost',
-            user : 'root',
-            password : '',
-            database : 'lojadelivros'
+            host: "localhost",
+            user: "root",
+            password : "12345678",
+            database: "lojadelivros"
         });
+
+        connection.query('select * from livros', function(err, results){
+            res.send(results);
+        });
+
         connection.end();
 
-        connection.query('select * from livros'), function (err,results) {
-            response.send(results);
-        };
-
-        //response.render("produtos/lista");
     });
 }
