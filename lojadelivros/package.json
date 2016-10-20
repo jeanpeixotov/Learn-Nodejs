@@ -1,0 +1,16 @@
+{
+  "name": "lojadelivros",
+  "version": "1.0.0",
+  "description": "site de uma livraria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "jean",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "express": "^4.14.0"
+  }
+}
