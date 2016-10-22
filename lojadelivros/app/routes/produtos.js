@@ -2,7 +2,7 @@
 module.exports = function(app) {
     //controllers
 
-    app.get("/produtos",function(req, res) {
+    var listaProdutos = function(req, res) {
 
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
@@ -14,20 +14,28 @@ module.exports = function(app) {
         });
 
         connection.end();
-    });
+    };
+
+    app.get("/produtos",listaProdutos);
 
     app.get('/produtos/form', function(req,res) {
         res.render('produtos/form');
     });
 
-    app.post('/produtos/salva',function(req,res) {
+    app.post("/produtos/salva",function(req,res) {
+        var produto = req.body;//pega o insformações do form e grava na var em json ( graças ao bodyParser)
+        //console.log(produto);
 
-        var produto = req.body; //pega o insformações do form e grava na var em json ( graças ao bodyParser)
+
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
-        produtosDAO.salva(produto,function(err,results) {
-            res.render('produtos/lista');
+        produtosDAO.salva(produto,function(erros,resultado){
+                //res.render("produtos/lista");
+                listaProdutos(req,res);
         });
-    });
+
+        connection.end();
+
+    })
 }
