@@ -20,7 +20,7 @@ module.exports = function(app) {
         res.render('produtos/form');
     });
 
-    app.post("/produtos/salva",function(req,res) {
+    app.post("/produtos",function(req,res) {
         var produto = req.body;//pega o insformações do form e grava na var em json ( graças ao bodyParser)
         //console.log(produto);
 
