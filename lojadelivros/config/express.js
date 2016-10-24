@@ -1,6 +1,7 @@
 var express = require('express'); //chamando direto () === var x express()
 var load = require('express-load');
 var bodyParser = require('body-parser');
+var expressvali = require('express-validator');
 module.exports = function () {
     var app = express();
 
@@ -10,7 +11,8 @@ module.exports = function () {
     app.use(bodyParser.urlencoded({extended: true})); //extended para o bodyparser consegue interpretar o form corretamente(FK por exdmplo)
     //funções que sao carregadas antes de chegar a requisicao middleware
     //req->middlewarebodyparser -> middlewareautenticacao -> funcao que trata requisicao
-
+    app.use(bodyParser.json());
+    app.use(expressvali());
     //rotas,controllers etc loading
     load('routes',{cwd: 'app'})
         .then('infra')
