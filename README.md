@@ -20,3 +20,5 @@ node main.js
 - ou
 
 Acesse o link para Heroku : it's not over yet 
+
+[![Code Climate](https://codeclimate.com/github/jeanvitor06/Learn-Nodejs/badges/gpa.svg)](https://codeclimate.com/github/jeanvitor06/Learn-Nodejs)
