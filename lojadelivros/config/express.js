@@ -12,11 +12,27 @@ module.exports = function () {
     app.use(bodyParser.urlencoded({extended: true})); //extended para o bodyparser consegue interpretar o form corretamente(FK por exdmplo)
     //funções que sao carregadas antes de chegar a requisicao middleware
     //req->middlewarebodyparser -> middlewareautenticacao -> funcao que trata requisicao
+    //cuidado com a ordem dos middleware
     app.use(bodyParser.json());
     app.use(expressvali());
+
     //rotas,controllers etc loading
     load('routes',{cwd: 'app'})
         .then('infra')
         .into(app);//tudo que for carregado fica aqui
+
+    app.use(function (req,res,next) {
+        res.status(404).render('erros/404');
+        next();
+    });
+    app.use(function (error,req,res,next) {//o expres chama a use com 4 args prioritariamente
+        if(process.env.NODE_ENV == 'production'){
+            res.status(500).render('erros/500');
+            return;
+        }
+        next(error);
+    });
+
+
     return app;
 }
