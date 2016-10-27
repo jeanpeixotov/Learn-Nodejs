@@ -5,6 +5,7 @@ var expressvali = require('express-validator');
 module.exports = function () {
     var app = express();
 
+    app.use(express.static('./app/public'))
     app.set('view engine','ejs'); //definir variaveis o default é views na raiz do projeto
     app.set('views','./app/views'); // . é caminho relativo ao local onde voce vai subir o servidor
 
