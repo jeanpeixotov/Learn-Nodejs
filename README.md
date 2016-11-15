@@ -2,23 +2,18 @@
 Learn NodeJS
 
 
-# Instalando o npm
+# Dependencias para o projeto
+   - NodeJS
+   - npm
 
-sudo apt-get install npm
 
 # Instalações locais
 
-Após ter instalado as dependencias globalmente, posicione-se na pasta do projeto e digite no terminal:
+   - Após ter instalado as dependencias globalmente, posicione-se na pasta do projeto e digite no terminal:
 
-npm install
+   - $ npm install
 
-# Rodando o projeto
-node main.js
-    - localhost:3000
-    - start!
+# Alguns dos códigos neste repositório são baseados no livro "Construindo Aplicações com NodeJs"
 
-- ou
-
-Acesse o link para Heroku : it's not over yet 
 
 [![Code Climate](https://codeclimate.com/github/jeanvitor06/Learn-Nodejs/badges/gpa.svg)](https://codeclimate.com/github/jeanvitor06/Learn-Nodejs)
