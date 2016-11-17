@@ -29,17 +29,9 @@ app.use(cors());
 // });
 
 
-//routes
-app.get('/', function (req,res) {
-   res.status(201);
-   if(req.accepts('text')){
-      res.write('name; email\n');
-      res.write('Jean Vitor; jeanvitor06@gmail.com\n');
-      res.end();
-   }else{
-      res.json({'name':'Jean Vitor', 'email':'jeanvitor06@gmail.com'});
-   }
-});
+//refactory routes
+app.use('/',require('./routes'));
+
 
 //error handling
 app.use(function (req,res,next) {
