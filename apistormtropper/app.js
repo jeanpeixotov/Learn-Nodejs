@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
    }
 });
 
-app.use(cors());
+//app.use(cors());
 //ou usar cors do npm para permitir acesso de todos a api
 // app.use(function(req,res,next){
 //    res.header('Access-Control-Allow-Origin','*');
@@ -45,9 +45,5 @@ app.use(function (err,req,res,next) {
    res.status(err.status || 500).json({err:err.message});
 });
 
-//server listener
-var server = app.listen(3000, function () {
-   var host = server.address().address;
-   var port = server.address().port;
-   console.log('Server at http://%s:%s', host,port);
-});
+//refactory server listener
+module.exports = app;
