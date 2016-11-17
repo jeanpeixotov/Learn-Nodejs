@@ -1,5 +1,5 @@
 var express = require('express')
-   ,router = express.router();
+   ,router = express.Router();
 
 router.get('/', function (req,res) {
    res.status(201);
