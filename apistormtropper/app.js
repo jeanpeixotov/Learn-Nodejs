@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
-//var cors = require('cors');
 
 //server config
 app.use(methodOverride('X-HTTP-Method'));
@@ -11,7 +10,7 @@ app.use(methodOverride('X-Method-Override'));
 app.use(methodOverride('_method'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extented: true}));
+app.use(bodyParser.urlencoded({ extented:true }));
 
 app.use(function (req, res, next) {
    if (req.url === '/favicon.ico') {
@@ -22,14 +21,6 @@ app.use(function (req, res, next) {
    }
 });
 
-//app.use(cors());
-//ou usar cors do npm para permitir acesso de todos a api
-// app.use(function(req,res,next){
-//    res.header('Access-Control-Allow-Origin','*');
-//    res.header('Access-Control-Allow-Headers','Origin, X-Request-With, Content-type, Accept');
-// });
-
-
 //refactory routes
 app.use('/',require('./routes'));
 
@@ -37,7 +28,7 @@ app.use('/',require('./routes'));
 //error handling
 app.use(function (req,res,next) {
    var err = new Error('Not Found');
-   err.status = 404;
+   err.status = 404;//
    next(err);
 });
 
