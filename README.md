@@ -3,8 +3,8 @@ Learn NodeJS
 
 
 # Dependencias para o projeto
-   - NodeJS
-   - npm
+   - NodeJS - https://nodejs.org/en/
+   - npm - https://www.npmjs.com/
 
 
 # Instalações locais
