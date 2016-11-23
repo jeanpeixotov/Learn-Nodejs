@@ -4,9 +4,10 @@ var express = require('express')
 var mongoose = require('../db/mongoose');
 var StormtropperModel = require('../models/StormtropperModel')(mongoose);
 var StormtropperController = require('../controllers/StormtropperController')(StormtropperModel);
+var passport = require('passport');
 
-router.get('/', StormtropperController.getAll.bind(StormtropperController));
-router.get('/:_id', StormtropperController.getById.bind(StormtropperController));
+router.get('/', passport.authenticate('basic', { session:false}), StormtropperController.getAll.bind(StormtropperController));
+router.get('/:_id', passport.authenticate('basic', { session:false}), StormtropperController.getById.bind(StormtropperController));
 router.post('/', StormtropperController.create.bind(StormtropperController));
 router.put('/:_id', StormtropperController.update.bind(StormtropperController));
 router.delete('/:_id', StormtropperController.remove.bind(StormtropperController));
