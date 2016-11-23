@@ -20,11 +20,13 @@
   "author": "jeanvitor06",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "config": "^1.24.0",
     "debug": "^2.3.2",
     "express": "^4.14.0",
     "method-override": "^2.3.6",
-    "mongojs": "^0.18.2"
+    "mongojs": "^0.18.2",
+    "mongoose": "^4.6.8"
   }
 }
