@@ -1,7 +1,9 @@
-var express = require('express');
-var app = express();
-var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
+var express         = require('express')
+    ,methodOverride = require('method-override')
+    ,bodyParser     = require('body-parser')
+    ,passport       = require('passport')
+    ,BasicStrategy  = require('passport-http').BasicStrategy
+    ,app            = express();
 
 //server config
 app.use(methodOverride('X-HTTP-Method'));
@@ -21,7 +23,18 @@ app.use(function (req, res, next) {
    }
 });
 
-//refactory routes
+app.use(passport.initialize());
+passport.use(
+    new BasicStrategy(function(username, passport, done){
+        if(username.valueOf() === 'traitor' && passport.valueOf() === 'fn-2187'){
+            return done(null,true);
+        }else{
+            return done(null,false);
+        }
+    })
+);
+
+//routes
 app.use('/',require('./routes'));
 
 
@@ -37,5 +50,5 @@ app.use(function (err,req,res,next) {
    res.status(err.status || 500).json({err:err.message});
 });
 
-//refactory server listener
+//server listener
 module.exports = app;
