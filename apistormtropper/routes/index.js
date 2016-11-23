@@ -7,6 +7,6 @@ router.get('/', function (req,res) {
 });
 
 //stormtroppers
-router.use('/stormtroppers', require('./stormtroppers'));
+router.use('/stormtropper', require('./stormtroppers'));
 
 module.exports = router;
