@@ -1,6 +1,6 @@
-var mongojs = require('mongojs')
-   ,config = require('config')
-   ,debug = require('debug')('apistormtropper:db');
+var mongoose = require('mongoose'),
+    debug = require('debug')('apistormtropper:db'),
+    config = require('config');
 
 'use strict';
 
@@ -14,8 +14,12 @@ function _connection() {
    return 'mongodb://' + auth + server + ':' + port + '/' + database;
 }
 
-var db = mongojs(_connection());
+mongoose.connect(_connection());
+var db = mongoose.connection;
 db.on('error',function (err) {
-   debug(err);
+    debug(err);
 });
-module.exports = db;
+db.once('open', function (callback){
+    debug('connect to mongodb');
+});
+module.exports = mongoose;
