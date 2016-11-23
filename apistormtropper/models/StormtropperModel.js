@@ -1,29 +1,45 @@
-function StormtropperModel(mongo) {
-   this.mongo = mongo;
+'use strict';
+
+function StormtropperDAO(model) {
+   this.model = model;
 }
-StormtropperModel.prototype.find = function (query ,callback){
-   this.mongo.collection('stormtroppers').find(query,callback);
+
+StormtropperDAO.prototype.create = function (data ,callback) {
+   var model = new this.model(data);
+   model.save(function (err,result) {
+      callback(err,result);
+   });
 };
 
-StormtropperModel.prototype.findOne = function (_id, callback) {
-   var query = { _id: this.mongo.ObjectId(_id) };
-   this.mongo.collection('stormtroppers').findOne(query,callback);
+StormtropperDAO.prototype.find = function (query ,callback){
+   this.model.find(query).exec(callback);
 };
 
-StormtropperModel.prototype.create = function (data ,callback) {
-   this.mongo.collection('stormtroppers').insert(data ,callback);
+StormtropperDAO.prototype.findOne = function (_id, callback) {
+   var query = { _id: _id };
+   this.model.findOne(query).exec(callback);
 };
 
-StormtropperModel.prototype.update = function (_id ,data ,callback) {
-   var query = { _id: this.mongo.ObjectId(_id) };
-   this.mongo.collection('stormtroppers').update(query, data, callback);
+StormtropperDAO.prototype.update = function (_id ,data ,callback) {
+   var query = { _id: _id };
+   this.model.update(query, data).exec(function (err,result) {
+       callback(err,result);
+   });
 };
 
-StormtropperModel.prototype.remove = function (_id ,callback) {
-   var query = { _id: this.mongo.ObjectId(_id) };
-   this.mongo.collection('stormtroppers').remove(query, callback);
+StormtropperDAO.prototype.remove = function (_id ,callback) {
+   var query = { _id: _id };
+   this.model.remove(query).exec(function (err,result) {
+       callback(err,result);
+   });
 };
 
-module.exports = function (mongo) {
-   return new StormtropperModel(mongo);
-}
+module.exports = function (mongoose) {
+   var Stormtropper = mongoose.model('Stormtropper',{
+      name: String,
+      nickname: String,
+      divisions: [String],
+      patent: String
+   });
+   return new StormtropperDAO(Stormtropper);
+};
