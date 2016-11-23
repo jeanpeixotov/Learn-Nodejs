@@ -10,7 +10,7 @@ var removeClient = function (data) {
 
 var broadcast = function (msg, client) {
    for (var i = clientList.length; i >= 0; i--) {
-      if (client != clientList[i]) { //teste com ==, com um unico cliente
+      if (client !== clientList[i]) { //teste com ==, com um unico cliente
          clientList[i].write(msg);
       }
    }
