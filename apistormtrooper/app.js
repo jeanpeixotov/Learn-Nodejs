@@ -1,9 +1,9 @@
-var express         = require('express')
-    ,methodOverride = require('method-override')
-    ,bodyParser     = require('body-parser')
-    ,passport       = require('passport')
-    ,BasicStrategy  = require('passport-http').BasicStrategy
-    ,app            = express();
+var express         = require('express'),
+    methodOverride = require('method-override'),
+    bodyParser     = require('body-parser'),
+    passport       = require('passport'),
+    BasicStrategy  = require('passport-http').BasicStrategy,
+    app            = express();
 
 //server config
 app.use(methodOverride('X-HTTP-Method'));

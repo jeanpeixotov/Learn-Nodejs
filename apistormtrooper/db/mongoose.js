@@ -1,16 +1,16 @@
 var mongoose = require('mongoose'),
-    debug = require('debug')('apistormtropper:db'),
+    debug = require('debug')('apistormtrooper:db'),
     config = require('config');
 
 'use strict';
 
 function _connection() {
-   var username = config.get('mongo.username')
-      ,password = config.get('mongo.password')
-      ,server = config.get('mongo.server')
-      ,port = config.get('mongo.port')
-      ,database = config.get('mongo.database')
-      ,auth = username ? username + ':' + password + '@' : '';
+   var username = config.get('mongo.username'),
+      password = config.get('mongo.password'),
+      server = config.get('mongo.server'),
+      port = config.get('mongo.port'),
+      database = config.get('mongo.database'),
+      auth = username ? username + ':' + password + '@' : '';
    return 'mongodb://' + auth + server + ':' + port + '/' + database;
 }
 
