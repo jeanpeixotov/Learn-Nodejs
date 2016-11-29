@@ -1,8 +1,6 @@
 var express         = require('express'),
     methodOverride = require('method-override'),
     bodyParser     = require('body-parser'),
-    passport       = require('passport'),
-    BasicStrategy  = require('passport-http').BasicStrategy,
     app            = express();
 
 //server config
@@ -22,17 +20,6 @@ app.use(function (req, res, next) {
       next();
    }
 });
-
-app.use(passport.initialize());
-passport.use(
-    new BasicStrategy(function(username, passport, done){
-        if(username.valueOf() === 'traitor' && passport.valueOf() === 'fn-2187'){
-            return done(null,true);
-        }else{
-            return done(null,false);
-        }
-    })
-);
 
 //routes
 app.use('/',require('./routes'));
