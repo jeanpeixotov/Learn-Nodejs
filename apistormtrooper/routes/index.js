@@ -7,6 +7,6 @@ router.get('/', function (req,res) {
 });
 
 //stormtroopers
-router.use('/stormtrooper', require('./stormtroopers'));
+router.use('/stormtroopers', require('./stormtroopers'));
 
 module.exports = router;
